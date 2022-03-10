@@ -24,15 +24,19 @@ function onFormSubmit(e){
     //   ajax request 
 
     $.ajax({
-        method: 'GET',
+        method: 'POST',
         url: '/ajax.php',
-        dataType: 'json',
-        data: jsonFormData,
-        success: (res)=> {
-            alert(res.success);
-            alert(res.error);
+        data: formData,
+        contentType: false,      
+        success: (res) => {
+            if (res.readyState === 4 && res.status === 200) {
+            alert(res.responseText);
+            } else {
+            alert("Что-то пошло не так");
+            }
         }
     });
 
     $('#my-form')[0].reset();
 }
+
