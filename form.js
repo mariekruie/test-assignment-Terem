@@ -8,8 +8,8 @@ function onFormSubmit(e){
     e.preventDefault();
 
     let formData = {
-    'fieldOne': $('#field-one').val(),
-    'fieldTwo': $('#field-two').val(),
+    'fieldOne': $('#field-one').val().trim(),
+    'fieldTwo': $('#field-two').val().trim(),
     'selectOne': $('#select-one').val(),
     'selectTwo': $('#select-two').val(),
     'selectThree': $('#select-three').val(),
@@ -24,19 +24,14 @@ function onFormSubmit(e){
     //   ajax request 
 
     $.ajax({
-        method: 'POST',
-        url: '/ajax.php',
-        data: formData,
-        contentType: false,      
+        url: 'ajax/ajax.php',
+        type: 'GET',   
         success: (res) => {
-            if (res.readyState === 4 && res.status === 200) {
-            alert(res.responseText);
-            } else {
-            alert("Что-то пошло не так");
-            }
+          alert(res)
         }
     });
 
     $('#my-form')[0].reset();
 }
+
 
